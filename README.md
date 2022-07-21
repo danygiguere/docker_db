@@ -7,3 +7,27 @@
 
 to stop the db docker image, run  `docker-compose down`
 to restart it without rebuilding, run  `docker-compose up`
+
+Then in your other project, you must add the network name to your docker-compose file. You can find it by typing `docker network ls` but it should be `docker_db_network`. 
+For example for a spring boot project, you should have:
+
+```
+version: '3.7'
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url= jdbc:mysql://docker_db:3306/docker_db?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: docker_db_network```
+

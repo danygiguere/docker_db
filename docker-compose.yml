@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - ${DOCKER_MYSQL_PORTS}
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -20,11 +20,11 @@ services:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - docker_db-network
+      - network
 
 #Docker Networks
 networks:
-  docker_db-network:
+  network:
     driver: bridge
 
 #Volumes
