@@ -2,9 +2,9 @@ version: '3.7'
 services:
 
   #MySQL Service
-  db:
+  docker_db:
     image: mysql:5.7.22
-    container_name: ${DOCKER_CONTAINER_NAME_SLUG}_db
+    container_name: docker_db
     restart: unless-stopped
     tty: true
     ports:
@@ -20,11 +20,11 @@ services:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - my-network
+      - docker_db-network
 
 #Docker Networks
 networks:
-  my-network:
+  docker_db-network:
     driver: bridge
 
 #Volumes
