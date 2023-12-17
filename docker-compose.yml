@@ -3,7 +3,7 @@ services:
 
   #MySQL Service
   db:
-    image: mysql:5.7.22
+    image: ${DOCKER_MYSQL_IMAGE}
     container_name: ${DOCKER_CONTAINER_NAME_SLUG}_db
     restart: unless-stopped
     tty: true
