@@ -4,16 +4,14 @@ services:
   #MySQL Service
   db:
     image: ${DOCKER_MYSQL_IMAGE}
-    container_name: ${DOCKER_CONTAINER_NAME_SLUG}_db
+    container_name: ${DOCKER_CONTAINER_NAME_SLUG}
     restart: unless-stopped
     tty: true
     ports:
       - ${DOCKER_MYSQL_PORTS}
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
@@ -22,7 +20,7 @@ services:
     networks:
       - my-network
 
-#Docker Networks
+#Networks: 
 networks:
   my-network:
     driver: bridge
