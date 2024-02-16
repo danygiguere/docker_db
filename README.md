@@ -8,10 +8,10 @@
 - to stop the db docker image, run: `docker-compose down`
 - to restart it without rebuilding, run: `docker-compose up`
 
-- Once installed a newtork will have been created. Look in the logs and you should see: 
+- Once installed, a newtork will have been created. Look in the logs and you should see the name. For example: 
     - `Network docker_db_my-network   Created `
 
-- Note that this network is necessary if you want to connect other apps from other docker networks. You'll then need to add the network name in the docker-compose file under the `networks` section. For example:
+- Note that this network is necessary if you want to connect other apps from other docker networks. You'll then need to add the network name in the docker-compose file of the other apps, under the `networks` section. For example:
 
 ```
 version: '3.7'
