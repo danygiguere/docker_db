@@ -10,7 +10,7 @@
 
 - Once installed a newtork will have been created. Look in the logs and you should see: 
     - `Network docker_db_my-network   Created `
-- Then take that network name for other apps. For instance in another app you may have a docker-compose file that looks like this:
+- Note that you meay need that network name for other apps. For instance in another app you may have a docker-compose file that looks like this:
 
 ```
 version: '3.7'
