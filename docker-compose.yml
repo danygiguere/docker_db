@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   #MySQL Service
-  db:
+  docker_db:
     image: ${DOCKER_MYSQL_IMAGE}
     container_name: ${DOCKER_CONTAINER_NAME_SLUG}
     restart: unless-stopped
@@ -18,11 +18,11 @@ services:
       - dbdata:/var/lib/mysql/
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - my-network
+      - mynetwork
 
 #Networks: 
 networks:
-  my-network:
+  mynetwork:
     driver: bridge
 
 #Volumes

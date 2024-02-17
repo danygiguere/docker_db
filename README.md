@@ -8,10 +8,8 @@
 - to stop the db docker image, run: `docker-compose down`
 - to restart it without rebuilding, run: `docker-compose up`
 
-- Once installed, a newtork will have been created. Look in the logs and you should see the name. For example: 
-    - `Network docker_db_my-network   Created `
+Then in your other projects, you must add the network name to your docker-compose file. You can find it by running `docker network ls` but it should be `docker_db_mynetwork`. For example for a spring boot project, you should have:
 
-- Note that this network is necessary if you want to connect other apps from other docker networks. You'll then need to add the network name in the docker-compose file of the other apps, under the `networks` section. For example:
 
 ```
 version: '3.7'
@@ -31,5 +29,5 @@ services:
 networks:
   default:
     external:
-      name: docker_db_my-network
+      name: docker_db_mynetwork
 ```
