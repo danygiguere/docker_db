@@ -10,7 +10,7 @@ services:
     ports:
       - ${DOCKER_MYSQL_PORTS}
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
