@@ -15,4 +15,4 @@ sleep 10 #Give mysql 10sec to drop database before creating a new one
 docker-compose exec db mysql -uroot -p${DB_PASSWORD} -e "CREATE DATABASE ${DB_NAME};"
 
 docker-compose down || exit
-docker-compose up
+docker-compose up -d
