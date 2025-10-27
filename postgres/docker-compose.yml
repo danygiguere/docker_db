@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+
+  #PostgreSQL Service
+  docker_postgres:
+    image: ${DOCKER_POSTGRES_IMAGE}
+    container_name: ${DOCKER_CONTAINER_NAME_SLUG}
+    restart: unless-stopped
+    tty: true
+    ports:
+      - ${DOCKER_POSTGRES_PORTS}
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: postgres
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+#Networks: 
+networks:
+  mynetwork:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
