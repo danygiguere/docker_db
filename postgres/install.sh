@@ -15,4 +15,4 @@ sleep 5 #Give postgres 5sec to drop database before creating a new one
 docker-compose exec docker_postgres psql -U postgres -c "CREATE DATABASE ${DB_NAME};"
 
 docker-compose down || exit
-docker-compose up
+docker-compose up -d
