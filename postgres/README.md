@@ -1,21 +1,32 @@
-# README #
+# PostgreSQL Docker DB
 
 ### Local Installation
-- First, make sure you have Docker installed on your computer.
-- second, run `cp .env.example .env` and add your credentials and specifications
-- Then make sure Docker is up and run this command: `sh install.sh`
 
-- to stop the db docker image, run: `docker-compose down`
-- to restart it without rebuilding, run: `docker-compose up`
+1. Make sure you have Docker installed on your computer.
+2. Run `cp .env.example .env` and add your credentials and specifications.
+3. Make sure Docker is up and run: `docker compose up -d`
 
-Then in your other projects, you must add the network name to your docker-compose file. You can find it by running `docker network ls` but it should be `docker_db_mynetwork`. For example for a spring boot project, you should have:
+### Commands
 
+- Stop the container: `docker compose down`
+- Reset with a fresh database: `docker compose down -v && docker compose up -d`
 
-```
-version: ...
+### Connecting from another Docker project
 
+Add the network name to your project's `docker-compose.yml`. You can find it by running `docker network ls` but it should be `docker_db_mynetwork`.
+
+```yaml
 services:
-  app ...
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:postgresql://docker_postgres:5432/docker_db
+    restart: unless-stopped
 
 networks:
   default:

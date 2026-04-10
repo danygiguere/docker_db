@@ -1,14 +1,13 @@
-version: '3.7'
 services:
 
   #MySQL Service
   docker_db:
-    image: ${DOCKER_MYSQL_IMAGE}
-    container_name: ${DOCKER_CONTAINER_NAME_SLUG}
+    image: ${DB_IMAGE}
+    container_name: ${DB_CONTAINER_NAME}
     restart: unless-stopped
     tty: true
     ports:
-      - ${DOCKER_MYSQL_PORTS}
+      - ${DB_PORTS}
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
