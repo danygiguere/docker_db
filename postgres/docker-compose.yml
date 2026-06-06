@@ -15,7 +15,8 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: postgres
     volumes:
-      - dbdata:/var/lib/postgresql/data
+      # PG18 stores data under /var/lib/postgresql/<major>/docker — mount the parent dir.
+      - dbdata:/var/lib/postgresql
     networks:
       - mynetwork
 
